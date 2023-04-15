@@ -1,0 +1,23 @@
+{
+  "name": "tree-sitter-mavka",
+  "version": "0.0.1",
+  "description": "Tree-sitter for Mavka",
+  "main": "bindings/node",
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "test": "tree-sitter test"
+  },
+  "keywords": [
+    "mavka",
+    "language",
+    "tree-sitter"
+  ],
+  "author": "Dmytro-Andrii Kostelnyi",
+  "license": "ISC",
+  "dependencies": {
+    "nan": "^2.17.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.8"
+  }
+}
