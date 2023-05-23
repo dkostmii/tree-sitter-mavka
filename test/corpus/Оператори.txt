@@ -1,0 +1,493 @@
+================================================================================
+Присвоєння
+================================================================================
+
+a = 1
+a += 1
+a -= 1
+а *= 1
+а /= 1
+а //= 1
+а <<= 1
+а >>= 1
+а **= 1
+а &= 1
+а |= 1
+а ^= 1
+a %= 1
+
+--------------------------------------------------------------------------------
+
+(module
+  (block
+    (assign_statement
+      (symbol
+        (identifier))
+      (primitive
+        (number)))
+    (assign_statement
+      (symbol
+        (identifier))
+      (primitive
+        (number)))
+    (assign_statement
+      (symbol
+        (identifier))
+      (primitive
+        (number)))
+    (assign_statement
+      (symbol
+        (identifier))
+      (primitive
+        (number)))
+    (assign_statement
+      (symbol
+        (identifier))
+      (primitive
+        (number)))
+    (assign_statement
+      (symbol
+        (identifier))
+      (primitive
+        (number)))
+    (assign_statement
+      (symbol
+        (identifier))
+      (primitive
+        (number)))
+    (assign_statement
+      (symbol
+        (identifier))
+      (primitive
+        (number)))
+    (assign_statement
+      (symbol
+        (identifier))
+      (primitive
+        (number)))
+    (assign_statement
+      (symbol
+        (identifier))
+      (primitive
+        (number)))
+    (assign_statement
+      (symbol
+        (identifier))
+      (primitive
+        (number)))
+    (assign_statement
+      (symbol
+        (identifier))
+      (primitive
+        (number)))
+    (assign_statement
+      (symbol
+        (identifier))
+      (primitive
+        (number)))))
+
+================================================================================
+Присвоєння з бінарним оператором
+================================================================================
+
+а = а + б
+а = а - б
+а = а * б
+а = а / б
+а = а // б
+а = а % б
+а = а << б
+а = а >> б
+а = а & б
+а = а | б
+а = а ^ б
+а = а ** б
+
+--------------------------------------------------------------------------------
+
+(module
+  (block
+    (assign_statement
+      (symbol
+        (identifier))
+      (binary_expression
+        (symbol
+          (identifier))
+        (symbol
+          (identifier))))
+    (assign_statement
+      (symbol
+        (identifier))
+      (binary_expression
+        (symbol
+          (identifier))
+        (symbol
+          (identifier))))
+    (assign_statement
+      (symbol
+        (identifier))
+      (binary_expression
+        (symbol
+          (identifier))
+        (symbol
+          (identifier))))
+    (assign_statement
+      (symbol
+        (identifier))
+      (binary_expression
+        (symbol
+          (identifier))
+        (symbol
+          (identifier))))
+    (assign_statement
+      (symbol
+        (identifier))
+      (binary_expression
+        (symbol
+          (identifier))
+        (symbol
+          (identifier))))
+    (assign_statement
+      (symbol
+        (identifier))
+      (binary_expression
+        (symbol
+          (identifier))
+        (symbol
+          (identifier))))
+    (assign_statement
+      (symbol
+        (identifier))
+      (binary_expression
+        (symbol
+          (identifier))
+        (symbol
+          (identifier))))
+    (assign_statement
+      (symbol
+        (identifier))
+      (binary_expression
+        (symbol
+          (identifier))
+        (symbol
+          (identifier))))
+    (assign_statement
+      (symbol
+        (identifier))
+      (binary_expression
+        (symbol
+          (identifier))
+        (symbol
+          (identifier))))
+    (assign_statement
+      (symbol
+        (identifier))
+      (binary_expression
+        (symbol
+          (identifier))
+        (symbol
+          (identifier))))
+    (assign_statement
+      (symbol
+        (identifier))
+      (binary_expression
+        (symbol
+          (identifier))
+        (symbol
+          (identifier))))
+    (assign_statement
+      (symbol
+        (identifier))
+      (binary_expression
+        (symbol
+          (identifier))
+        (symbol
+          (identifier))))))
+
+================================================================================
+Унарні оператори
+================================================================================
+
+а = -а
+а = !а
+
+--------------------------------------------------------------------------------
+
+(module
+  (block
+    (assign_statement
+      (symbol
+        (identifier))
+      (unary_expression
+        (symbol
+          (identifier))))
+    (assign_statement
+      (symbol
+        (identifier))
+      (unary_expression
+        (symbol
+          (identifier))))))
+
+================================================================================
+Інкремент / Декремент
+================================================================================
+
+a++
+a--
+--a
+++a
+
+--------------------------------------------------------------------------------
+
+(module
+  (block
+    (assign_statement
+      (symbol
+        (identifier)))
+    (assign_statement
+      (symbol
+        (identifier)))
+    (assign_statement
+      (symbol
+        (identifier)))
+    (assign_statement
+      (symbol
+        (identifier)))))
+
+================================================================================
+Оператори порівняння
+================================================================================
+
+якщо а == б
+кінець
+
+якщо а != б
+кінець
+
+якщо !(а == б)
+кінець
+
+якщо а < б
+кінець
+
+якщо а > б
+кінець
+
+якщо а <= б
+кінець
+
+якщо а >= б
+кінець
+
+--------------------------------------------------------------------------------
+
+(module
+  (block
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))))
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))))
+    (if_statement
+      (if_clause
+        (unary_expression
+          (binary_expression
+            (symbol
+              (identifier))
+            (symbol
+              (identifier))))))
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))))
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))))
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))))
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))))))
+
+================================================================================
+Оператори порівняння (словесні)
+================================================================================
+
+якщо а рівно б
+кінець
+
+якщо а не рівно б
+кінець
+
+якщо !(а рівно б)
+кінець
+
+якщо а менше б
+кінець
+
+якщо а більше б
+кінець
+
+якщо а не більше б
+кінець
+
+якщо а не менше б
+кінець
+
+--------------------------------------------------------------------------------
+
+(module
+  (block
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))))
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))))
+    (if_statement
+      (if_clause
+        (unary_expression
+          (binary_expression
+            (symbol
+              (identifier))
+            (symbol
+              (identifier))))))
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))))
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))))
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))))
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))))))
+
+================================================================================
+Логічні оператори
+================================================================================
+
+якщо а або б
+кінець
+
+якщо а і б
+кінець
+
+--------------------------------------------------------------------------------
+
+(module
+  (block
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))))
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))))))
+
+================================================================================
+Спеціальні оператори
+================================================================================
+
+якщо а є пусто
+кінець
+
+якщо а не є пусто
+кінець
+
+якщо а містить б
+кінець
+
+якщо а не містить б
+кінець
+
+--------------------------------------------------------------------------------
+
+(module
+  (block
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (type
+            (primitive_type)))))
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (type
+            (primitive_type)))))
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))))
+    (if_statement
+      (if_clause
+        (binary_expression
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))))))

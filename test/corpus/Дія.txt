@@ -1,0 +1,132 @@
+================================================================================
+Привітання
+================================================================================
+
+дія привітатись()
+    друк("Привіт від Лесі")
+кінець
+
+привітатись()
+
+--------------------------------------------------------------------------------
+
+(module
+  (block
+    (diia_definition
+      (identifier)
+      (parameter_list)
+      (type
+        (identifier))
+      (block
+        (primitive
+          (string))))
+    (function_call
+      (symbol
+        (identifier))
+      (argument_list))))
+
+================================================================================
+Додавання
+================================================================================
+
+дія додати(а число, б число)
+    результат = 0
+    результат += а
+    результат += б
+    вернути результат
+кінець
+
+додати(б=3, а=1)
+
+--------------------------------------------------------------------------------
+
+(module
+  (block
+    (diia_definition
+      (identifier)
+      (parameter_list
+        (parameter_entry
+          (identifier)
+          (type
+            (primitive_type)))
+        (parameter_entry
+          (identifier)
+          (type
+            (primitive_type))))
+      (block
+        (assign_statement
+          (symbol
+            (identifier))
+          (primitive
+            (number)))
+        (assign_statement
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))
+        (assign_statement
+          (symbol
+            (identifier))
+          (symbol
+            (identifier)))
+        (return_statement
+          (symbol
+            (identifier)))))
+    (function_call
+      (symbol
+        (identifier))
+      (argument_list
+        (dictionary
+          (dictionary_entry
+            (identifier)
+            (primitive
+              (number)))
+          (dictionary_entry
+            (identifier)
+            (primitive
+              (number))))))))
+
+================================================================================
+Привітання (складне)
+================================================================================
+
+дія привітатись(імʼя текст = "Лесі") ніщо
+    друк("Привіт від %(імʼя)!")
+кінець
+привітатись(імʼя="Мавки")
+
+--------------------------------------------------------------------------------
+
+(module
+  (block
+    (diia_definition
+      (identifier)
+      (parameter_list
+        (parameter_entry
+          (identifier)
+          (type
+            (primitive_type))
+          (primitive
+            (string))))
+      (type
+        (primitive_type))
+      (block
+        (function_call
+          (symbol
+            (identifier))
+          (argument_list
+            (expression_sequence
+              (primitive
+                (string
+                  (string_interpolation
+                    (symbol
+                      (identifier))))))))))
+    (function_call
+      (symbol
+        (identifier))
+      (argument_list
+        (dictionary
+          (dictionary_entry
+            (identifier)
+            (primitive
+              (string))))))))

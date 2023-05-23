@@ -1,0 +1,93 @@
+================================================================================
+Визначення структури
+================================================================================
+
+структура Привітання
+    імʼя текст або пусто
+    привітання текст
+кінець
+
+--------------------------------------------------------------------------------
+
+(module
+  (block
+    (structure_definition
+      (identifier)
+      (structure_field
+        (identifier)
+        (type_expression
+          (type
+            (primitive_type))
+          (type
+            (primitive_type))))
+      (structure_field
+        (identifier)
+        (type
+          (primitive_type))))))
+
+================================================================================
+Метод структури
+================================================================================
+
+дія Привітання.привітатись() ніщо
+  друк("%(я.привітання) %(я.імʼя)")
+кінець
+
+--------------------------------------------------------------------------------
+
+(module
+  (block
+    (diia_definition
+      (identifier)
+      (identifier)
+      (parameter_list)
+      (type
+        (primitive_type))
+      (block
+        (function_call
+          (symbol
+            (identifier))
+          (argument_list
+            (expression_sequence
+              (primitive
+                (string
+                  (string_interpolation
+                    (symbol
+                      (me)
+                      (property
+                        (identifier))))
+                  (string_interpolation
+                    (symbol
+                      (me)
+                      (property
+                        (identifier)))))))))))))
+
+================================================================================
+Створення обʼєкту структури
+================================================================================
+
+привітання = Привітання(
+  привітання="Привіт",
+  імʼя="Лесі"
+)
+
+--------------------------------------------------------------------------------
+
+(module
+  (block
+    (assign_statement
+      (symbol
+        (identifier))
+      (function_call
+        (symbol
+          (identifier))
+        (argument_list
+          (dictionary
+            (dictionary_entry
+              (identifier)
+              (primitive
+                (string)))
+            (dictionary_entry
+              (identifier)
+              (primitive
+                (string)))))))))

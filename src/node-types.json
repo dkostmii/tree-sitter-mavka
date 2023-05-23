@@ -4,23 +4,92 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
+        {
+          "type": "dictionary",
+          "named": true
+        },
+        {
+          "type": "expression_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "array",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "expression_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "array_subsripting",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
         {
           "type": "function_call",
           "named": true
         },
         {
+          "type": "function_expression",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "as_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
           "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "string",
           "named": true
         }
       ]
@@ -35,34 +104,66 @@
       "required": true,
       "types": [
         {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "function_expression",
           "named": true
         },
         {
-          "type": "number",
+          "type": "primitive",
           "named": true
         },
         {
-          "type": "string",
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "function_block",
+    "type": "binary_expression",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "assign_statement",
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "dictionary",
           "named": true
         },
         {
@@ -70,11 +171,90 @@
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "function_expression",
           "named": true
         },
         {
-          "type": "number",
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "assign_statement",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
+        {
+          "type": "diia_definition",
+          "named": true
+        },
+        {
+          "type": "fall_statement",
+          "named": true
+        },
+        {
+          "type": "for_statement",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_expression",
+          "named": true
+        },
+        {
+          "type": "give_statement",
+          "named": true
+        },
+        {
+          "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "module_definition",
+          "named": true
+        },
+        {
+          "type": "primitive",
           "named": true
         },
         {
@@ -82,7 +262,355 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "structure_definition",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "take_statement",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "wait_statement",
+          "named": true
+        },
+        {
+          "type": "while_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "boolean",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "false",
+          "named": true
+        },
+        {
+          "type": "true",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cloud_pak_link",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "cloud_pak_name",
+          "named": true
+        },
+        {
+          "type": "cloud_pak_prefix",
+          "named": true
+        },
+        {
+          "type": "cloud_pak_version",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cloud_pak_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cloud_pak_version",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "dictionary",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "dictionary_entry",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dictionary_entry",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "diia_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "parameter_list",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        },
+        {
+          "type": "type_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "else_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "empty",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "expression_sequence",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_expression",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fall_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_expression",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "for_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "as_statement",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_expression",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
           "named": true
         }
       ]
@@ -101,14 +629,46 @@
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_expression",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "function_definition",
+    "type": "function_expression",
     "named": true,
     "fields": {},
     "children": {
@@ -116,7 +676,202 @@
       "required": true,
       "types": [
         {
-          "type": "function_block",
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_expression",
+          "named": true
+        },
+        {
+          "type": "parameter_list",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "give_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "if_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_expression",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "if_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "else_clause",
+          "named": true
+        },
+        {
+          "type": "if_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "me",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "module",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "module_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parameter_entry",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_expression",
           "named": true
         },
         {
@@ -124,7 +879,23 @@
           "named": true
         },
         {
-          "type": "parameter_list",
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        },
+        {
+          "type": "type_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
           "named": true
         }
       ]
@@ -139,6 +910,53 @@
       "required": false,
       "types": [
         {
+          "type": "parameter_entry",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "primitive",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "empty",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "primitive_type",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "property",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
           "type": "identifier",
           "named": true
         }
@@ -151,29 +969,49 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
         {
           "type": "function_call",
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "function_expression",
           "named": true
         },
         {
-          "type": "number",
+          "type": "primitive",
           "named": true
         },
         {
-          "type": "string",
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "source_file",
+    "type": "string",
     "named": true,
     "fields": {},
     "children": {
@@ -181,7 +1019,34 @@
       "required": false,
       "types": [
         {
-          "type": "assign_statement",
+          "type": "string_interpolation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string_interpolation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "dictionary",
           "named": true
         },
         {
@@ -189,7 +1054,77 @@
           "named": true
         },
         {
-          "type": "function_definition",
+          "type": "function_expression",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "structure_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "structure_field",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "structure_field",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_expression",
           "named": true
         },
         {
@@ -197,15 +1132,308 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "primitive",
           "named": true
         },
         {
-          "type": "string",
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        },
+        {
+          "type": "type_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "symbol",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "me",
+          "named": true
+        },
+        {
+          "type": "property",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "take_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "as_statement",
+          "named": true
+        },
+        {
+          "type": "cloud_pak_link",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "primitive_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "unary_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_expression",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "wait_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "assign_statement",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
+        {
+          "type": "fall_statement",
+          "named": true
+        },
+        {
+          "type": "for_statement",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_expression",
+          "named": true
+        },
+        {
+          "type": "give_statement",
+          "named": true
+        },
+        {
+          "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "take_statement",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "wait_statement",
+          "named": true
+        },
+        {
+          "type": "while_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "while_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_expression",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "!",
+    "named": false
+  },
+  {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "%",
+    "named": false
+  },
+  {
+    "type": "%(",
+    "named": false
+  },
+  {
+    "type": "&",
+    "named": false
   },
   {
     "type": "(",
@@ -216,11 +1444,15 @@
     "named": false
   },
   {
-    "type": "*=",
+    "type": "*",
     "named": false
   },
   {
-    "type": "+=",
+    "type": "**",
+    "named": false
+  },
+  {
+    "type": "+",
     "named": false
   },
   {
@@ -228,11 +1460,31 @@
     "named": false
   },
   {
-    "type": "-=",
+    "type": "-",
     "named": false
   },
   {
-    "type": "/=",
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": "/",
+    "named": false
+  },
+  {
+    "type": "//",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<<",
     "named": false
   },
   {
@@ -240,7 +1492,51 @@
     "named": false
   },
   {
+    "type": "==",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">>",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "\\\"",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "block_comment",
+    "named": true
+  },
+  {
+    "type": "cloud_pak_prefix",
+    "named": true
+  },
+  {
+    "type": "false",
+    "named": true
+  },
+  {
     "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "line_comment",
     "named": true
   },
   {
@@ -248,11 +1544,35 @@
     "named": true
   },
   {
-    "type": "string",
+    "type": "true",
     "named": true
   },
   {
+    "type": "|",
+    "named": false
+  },
+  {
+    "type": "або",
+    "named": false
+  },
+  {
+    "type": "більше",
+    "named": false
+  },
+  {
     "type": "вернути",
+    "named": false
+  },
+  {
+    "type": "взяти",
+    "named": false
+  },
+  {
+    "type": "впасти",
+    "named": false
+  },
+  {
+    "type": "дати",
     "named": false
   },
   {
@@ -268,6 +1588,38 @@
     "named": false
   },
   {
+    "type": "менше",
+    "named": false
+  },
+  {
+    "type": "модуль",
+    "named": false
+  },
+  {
+    "type": "містить",
+    "named": false
+  },
+  {
+    "type": "не більше",
+    "named": false
+  },
+  {
+    "type": "не менше",
+    "named": false
+  },
+  {
+    "type": "не містить",
+    "named": false
+  },
+  {
+    "type": "не рівно",
+    "named": false
+  },
+  {
+    "type": "не є",
+    "named": false
+  },
+  {
     "type": "ніщо",
     "named": false
   },
@@ -276,7 +1628,23 @@
     "named": false
   },
   {
+    "type": "пак",
+    "named": false
+  },
+  {
+    "type": "перебрати",
+    "named": false
+  },
+  {
+    "type": "поки",
+    "named": false
+  },
+  {
     "type": "пусто",
+    "named": false
+  },
+  {
+    "type": "рівно",
     "named": false
   },
   {
@@ -288,7 +1656,15 @@
     "named": false
   },
   {
+    "type": "структура",
+    "named": false
+  },
+  {
     "type": "текст",
+    "named": false
+  },
+  {
+    "type": "чекати",
     "named": false
   },
   {
@@ -297,6 +1673,30 @@
   },
   {
     "type": "щось",
+    "named": false
+  },
+  {
+    "type": "я",
+    "named": false
+  },
+  {
+    "type": "як",
+    "named": false
+  },
+  {
+    "type": "якщо",
+    "named": false
+  },
+  {
+    "type": "є",
+    "named": false
+  },
+  {
+    "type": "і",
+    "named": false
+  },
+  {
+    "type": "інакше",
     "named": false
   }
 ]
