@@ -89,14 +89,17 @@
                 (primitive_type))
               (primitive
                 (string))))
-          (type
-            (identifier))
           (block
-            (primitive
-              (string
-                (string_interpolation
-                  (symbol
-                    (identifier)))))))
+            (function_call
+              (symbol
+                (identifier))
+              (argument_list
+                (expression_sequence
+                  (primitive
+                    (string
+                      (string_interpolation
+                        (symbol
+                          (identifier))))))))))
         (give_statement
           (symbol
             (identifier)))))))
@@ -131,14 +134,17 @@
                 (primitive_type))
               (primitive
                 (string))))
-          (type
-            (identifier))
           (block
-            (primitive
-              (string
-                (string_interpolation
-                  (symbol
-                    (identifier)))))))
+            (function_call
+              (symbol
+                (identifier))
+              (argument_list
+                (expression_sequence
+                  (primitive
+                    (string
+                      (string_interpolation
+                        (symbol
+                          (identifier))))))))))
         (give_statement
           (symbol
             (identifier)))))

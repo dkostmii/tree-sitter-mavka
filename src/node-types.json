@@ -250,6 +250,10 @@
           "named": true
         },
         {
+          "type": "long_diia_definition",
+          "named": true
+        },
+        {
           "type": "module_definition",
           "named": true
         },
@@ -798,6 +802,21 @@
         },
         {
           "type": "if_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "long_diia_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "diia_definition",
           "named": true
         }
       ]
@@ -1661,6 +1680,10 @@
   },
   {
     "type": "текст",
+    "named": false
+  },
+  {
+    "type": "тривала",
     "named": false
   },
   {

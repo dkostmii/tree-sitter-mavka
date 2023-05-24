@@ -43,14 +43,14 @@ module.exports = grammar({
        prec.left(5, seq($._expression, '>>', $._expression)),
        prec.left(4, seq($._expression, choice('>', 'більше'), $._expression)),
        prec.left(4, seq($._expression, choice('<', 'менше'), $._expression)),
-       prec.left(4, seq($._expression, choice(seq('<', '='), 'не більше'), $._expression)),
-       prec.left(4, seq($._expression, choice(seq('>', '='), 'не менше'), $._expression)),
+       prec.left(4, seq($._expression, choice(seq('<', token.immediate('=')), 'не більше'), $._expression)),
+       prec.left(4, seq($._expression, choice(seq('>', token.immediate('=')), 'не менше'), $._expression)),
        prec.left(4, seq($._expression, 'містить', $._expression)),
        prec.left(4, seq($._expression, 'не містить', $._expression)),
        prec.left(4, seq($._expression, 'є', $.type)),
        prec.left(4, seq($._expression, 'не є', $.type)),
        prec.left(3, seq($._expression, choice('==', 'рівно'), $._expression)),
-       prec.left(3, seq($._expression, choice(seq('!', '='), 'не рівно'), $._expression)),
+       prec.left(3, seq($._expression, choice(seq('!', token.immediate('=')), 'не рівно'), $._expression)),
        prec.left(2, seq($._expression, '&', $._expression)),
        prec.left(2, seq($._expression, '|', $._expression)),
        prec.left(2, seq($._expression, '^', $._expression)),
@@ -70,6 +70,7 @@ module.exports = grammar({
       ),
 
       _definition: $ => choice(
+        $.long_diia_definition,
         $.diia_definition,
         $.structure_definition,
         $.module_definition
@@ -96,6 +97,11 @@ module.exports = grammar({
         optional(seq('=', $._expression))
       )),
 
+      long_diia_definition: $ => seq(
+        'тривала',
+        $.diia_definition
+      ),
+
       diia_definition: $ => seq(
         'дія',
         optional(
@@ -108,7 +114,7 @@ module.exports = grammar({
         optional(
           choice($.type, $.type_expression)
         ),
-        $.block,
+        optional($.block),
         'кінець'
       ),
 
@@ -207,26 +213,42 @@ module.exports = grammar({
         )
       )),
 
-      assign_statement: $ => prec.right(2, choice(
-        seq($.symbol, '=', $._expression),
-        seq($.symbol, '+', '=', $._expression),
-        seq($.symbol, '-', '=', $._expression),
-        seq($.symbol, '*', '=', $._expression),
-        seq($.symbol, '/', '=', $._expression),
-        seq($.symbol, '%', '=', $._expression),
-        seq($.symbol, '//', '=', $._expression),
-        seq($.symbol, '<<', '=', $._expression),
-        seq($.symbol, '>>', '=', $._expression),
-        seq($.symbol, '&', '=', $._expression),
-        seq($.symbol, '|', '=', $._expression),
-        seq($.symbol, '^', '=', $._expression),
-        seq($.symbol, '**', '=', $._expression),
+      assign_statement: $ => choice(
+        prec.right(2, seq($._expression, '=', $._expression)),
+        prec.right(2, seq($._expression, '+', token.immediate('='), $._expression)),
+        prec.right(2, seq($._expression, '-', token.immediate('='), $._expression)),
+        prec.right(2, seq($._expression, '*', token.immediate('='), $._expression)),
+        prec.right(2, seq($._expression, '/', token.immediate('='), $._expression)),
+        prec.right(2, seq($._expression, '%', token.immediate('='), $._expression)),
+        prec.right(2, seq($._expression, '//', token.immediate('='), $._expression)),
+        prec.right(2, seq($._expression, '<<', token.immediate('='), $._expression)),
+        prec.right(2, seq($._expression, '>>', token.immediate('='), $._expression)),
+        prec.right(2, seq($._expression, '&', token.immediate('='), $._expression)),
+        prec.right(2, seq($._expression, '|', token.immediate('='), $._expression)),
+        prec.right(2, seq($._expression, '^', token.immediate('='), $._expression)),
+        prec.right(2, seq($._expression, '**', token.immediate('='), $._expression)),
 
-        seq($.symbol, '+', '+'),
-        seq($.symbol, '-', '-'),
-        seq('+', '+', $.symbol),
-        seq('-', '-', $.symbol)
-      )),
+        prec(30, seq(
+          $._expression,
+          token.immediate('+'),
+          token.immediate('+')
+        )),
+        prec(30, seq(
+          $._expression,
+          token.immediate('-'),
+          token.immediate('-')
+        )),
+        prec(20, seq(
+          '+',
+          token.immediate('+'),
+          $._expression
+        )),
+        prec(20, seq(
+          '-',
+          token.immediate('-'),
+          $._expression
+        ))
+      ),
 
       return_statement: $ => prec.right(20, seq(
         'вернути',
@@ -254,12 +276,12 @@ module.exports = grammar({
         repeat1(seq('або', $.type))
       ),
 
-      type: $ => prec(2, choice(
+      type: $ => choice(
         $.primitive_type,
         $.identifier,
-      )),
+      ),
 
-      primitive_type: $ => prec(2, choice(
+      primitive_type: $ => prec(0, choice(
         'текст',
         'логічне',
         'число',
@@ -278,11 +300,9 @@ module.exports = grammar({
 
       array_subsripting: $ => prec(3, seq(
         $._expression,
-        seq(
-          '[',
-          $._expression,
-          ']'
-        )
+        '[',
+        $._expression,
+        ']'
       )),
 
       argument_list: $ => prec(3, choice(
@@ -302,11 +322,11 @@ module.exports = grammar({
         ')'
       )),
 
-      dictionary_entry: $ => seq(
+      dictionary_entry: $ => prec(3, seq(
         $.identifier,
         '=',
         $._expression
-      ),
+      )),
 
       array: $ => seq(
         '[',
@@ -359,7 +379,7 @@ module.exports = grammar({
 
       number: $ => /\d+(\.\d+)?/,
       
-      empty: $ => 'пусто',
+      empty: $ => prec(1, 'пусто'),
 
       line_comment: $ => token(seq(';;', /.*/)),
       block_comment: $ => token(seq(';--', /.*/, '--;')),

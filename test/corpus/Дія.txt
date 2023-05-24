@@ -15,11 +15,14 @@
     (diia_definition
       (identifier)
       (parameter_list)
-      (type
-        (identifier))
       (block
-        (primitive
-          (string))))
+        (function_call
+          (symbol
+            (identifier))
+          (argument_list
+            (expression_sequence
+              (primitive
+                (string)))))))
     (function_call
       (symbol
         (identifier))
