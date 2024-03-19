@@ -731,10 +731,6 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "long_diia_definition"
-        },
-        {
-          "type": "SYMBOL",
           "name": "diia_definition"
         },
         {
@@ -744,6 +740,10 @@
         {
           "type": "SYMBOL",
           "name": "module_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "variable_definition"
         }
       ]
     },
@@ -795,6 +795,18 @@
           "type": "CHOICE",
           "members": [
             {
+              "type": "SYMBOL",
+              "name": "generic_type_params"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
               "type": "SEQ",
               "members": [
                 {
@@ -839,17 +851,8 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "type"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "type_expression"
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "type_annotation"
               },
               {
                 "type": "BLANK"
@@ -880,22 +883,30 @@
         ]
       }
     },
-    "long_diia_definition": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "тривала"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "diia_definition"
-        }
-      ]
-    },
     "diia_definition": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "тривала"
+                },
+                {
+                  "type": "STRING",
+                  "value": "спец"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
         {
           "type": "STRING",
           "value": "дія"
@@ -904,26 +915,52 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "CHOICE",
+              "type": "SEQ",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "identifier"
-                },
-                {
-                  "type": "SEQ",
+                  "type": "CHOICE",
                   "members": [
                     {
                       "type": "SYMBOL",
                       "name": "identifier"
                     },
                     {
-                      "type": "STRING",
-                      "value": "."
-                    },
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "identifier"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": "."
+                        },
+                        {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "identifier"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "magic_diia_identifier"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
                     {
                       "type": "SYMBOL",
-                      "name": "identifier"
+                      "name": "generic_type_params"
+                    },
+                    {
+                      "type": "BLANK"
                     }
                   ]
                 }
@@ -939,43 +976,175 @@
           "name": "parameter_list"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "type"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "type_expression"
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "PREC_LEFT",
+          "value": 1,
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "type_annotation"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "block"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "PREC_LEFT",
+          "value": 2,
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "block"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
         },
         {
           "type": "STRING",
           "value": "кінець"
         }
       ]
+    },
+    "magic_diia_identifier": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "чародія_"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "додати"
+              },
+              {
+                "type": "STRING",
+                "value": "відняти"
+              },
+              {
+                "type": "STRING",
+                "value": "помножити"
+              },
+              {
+                "type": "STRING",
+                "value": "поділити"
+              },
+              {
+                "type": "STRING",
+                "value": "остача"
+              },
+              {
+                "type": "STRING",
+                "value": "частка"
+              },
+              {
+                "type": "STRING",
+                "value": "степінь"
+              },
+              {
+                "type": "STRING",
+                "value": "вабо"
+              },
+              {
+                "type": "STRING",
+                "value": "дабо"
+              },
+              {
+                "type": "STRING",
+                "value": "ді"
+              },
+              {
+                "type": "STRING",
+                "value": "вліво"
+              },
+              {
+                "type": "STRING",
+                "value": "вправо"
+              },
+              {
+                "type": "STRING",
+                "value": "дні"
+              },
+              {
+                "type": "STRING",
+                "value": "більше"
+              },
+              {
+                "type": "STRING",
+                "value": "менше"
+              },
+              {
+                "type": "STRING",
+                "value": "не_менше"
+              },
+              {
+                "type": "STRING",
+                "value": "не_більше"
+              },
+              {
+                "type": "STRING",
+                "value": "додатнє"
+              },
+              {
+                "type": "STRING",
+                "value": "відʼємне"
+              },
+              {
+                "type": "STRING",
+                "value": "містить"
+              },
+              {
+                "type": "STRING",
+                "value": "отримати"
+              },
+              {
+                "type": "STRING",
+                "value": "покласти"
+              },
+              {
+                "type": "STRING",
+                "value": "викликати"
+              },
+              {
+                "type": "STRING",
+                "value": "перебір"
+              },
+              {
+                "type": "STRING",
+                "value": "число"
+              },
+              {
+                "type": "STRING",
+                "value": "текст"
+              },
+              {
+                "type": "STRING",
+                "value": "список"
+              },
+              {
+                "type": "STRING",
+                "value": "словник"
+              },
+              {
+                "type": "STRING",
+                "value": "байти"
+              }
+            ]
+          }
+        ]
+      }
     },
     "_statement": {
       "type": "CHOICE",
@@ -1019,6 +1188,10 @@
         {
           "type": "SYMBOL",
           "name": "wait_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "try_catch_statement"
         }
       ]
     },
@@ -1132,36 +1305,103 @@
       ]
     },
     "take_statement": {
+      "type": "PREC_RIGHT",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "взяти"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "пак"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "біб"
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "symbol"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "as_statement"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "named_module_statement"
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "named_module_statement": {
       "type": "SEQ",
       "members": [
         {
           "type": "STRING",
-          "value": "взяти"
+          "value": "["
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "пак"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "named_module_entry"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "cloud_pak_link"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "symbol"
-            }
-          ]
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "SYMBOL",
+                "name": "named_module_entry"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "named_module_entry": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
         },
         {
           "type": "CHOICE",
@@ -1177,59 +1417,6 @@
         }
       ]
     },
-    "cloud_pak_link": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "\""
-        },
-        {
-          "type": "SYMBOL",
-          "name": "cloud_pak_prefix"
-        },
-        {
-          "type": "STRING",
-          "value": "/"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "cloud_pak_name"
-        },
-        {
-          "type": "STRING",
-          "value": "/"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "cloud_pak_version"
-        },
-        {
-          "type": "STRING",
-          "value": "\""
-        }
-      ]
-    },
-    "cloud_pak_name": {
-      "type": "PREC",
-      "value": 1,
-      "content": {
-        "type": "SYMBOL",
-        "name": "identifier"
-      }
-    },
-    "cloud_pak_version": {
-      "type": "PREC",
-      "value": 2,
-      "content": {
-        "type": "PATTERN",
-        "value": "\\d\\.\\d(\\.\\d)*"
-      }
-    },
-    "cloud_pak_prefix": {
-      "type": "STRING",
-      "value": "хмарний.пак.укр"
-    },
     "as_statement": {
       "type": "SEQ",
       "members": [
@@ -1240,6 +1427,69 @@
         {
           "type": "SYMBOL",
           "name": "identifier"
+        }
+      ]
+    },
+    "try_catch_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "try_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "catch_clause"
+        }
+      ]
+    },
+    "try_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "спробувати"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "block"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "catch_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "зловити"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "block"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "кінець"
         }
       ]
     },
@@ -1894,17 +2144,8 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "type"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "type_expression"
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "type_annotation"
               },
               {
                 "type": "BLANK"
@@ -1923,7 +2164,7 @@
                   },
                   {
                     "type": "SYMBOL",
-                    "name": "_expression"
+                    "name": "parameter_default_value"
                   }
                 ]
               },
@@ -1934,6 +2175,64 @@
           }
         ]
       }
+    },
+    "parameter_default_value": {
+      "type": "SYMBOL",
+      "name": "_expression"
+    },
+    "variable_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "субʼєкт"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "type_annotation"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        }
+      ]
+    },
+    "type_annotation": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_expression"
+        }
+      ]
     },
     "type_expression": {
       "type": "SEQ",
@@ -1948,8 +2247,17 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "STRING",
-                "value": "або"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "або"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "і"
+                  }
+                ]
               },
               {
                 "type": "SYMBOL",
@@ -1961,62 +2269,205 @@
       ]
     },
     "type": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "primitive_type"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        }
-      ]
-    },
-    "primitive_type": {
-      "type": "PREC",
+      "type": "PREC_RIGHT",
       "value": 0,
       "content": {
         "type": "CHOICE",
         "members": [
           {
-            "type": "STRING",
-            "value": "текст"
+            "type": "SYMBOL",
+            "name": "builtin_type"
           },
           {
-            "type": "STRING",
-            "value": "логічне"
-          },
-          {
-            "type": "STRING",
-            "value": "число"
-          },
-          {
-            "type": "STRING",
-            "value": "список"
-          },
-          {
-            "type": "STRING",
-            "value": "словник"
-          },
-          {
-            "type": "STRING",
-            "value": "обʼєкт"
-          },
-          {
-            "type": "STRING",
-            "value": "щось"
-          },
-          {
-            "type": "STRING",
-            "value": "ніщо"
-          },
-          {
-            "type": "STRING",
-            "value": "пусто"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "generic_type_args"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
+    },
+    "builtin_type": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "aggregate_type"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "generic_type_args"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "primitive_type"
+          }
+        ]
+      }
+    },
+    "generic_type_args": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "generic_type_arg"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "SYMBOL",
+                "name": "generic_type_arg"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        }
+      ]
+    },
+    "generic_type_arg": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_expression"
+        }
+      ]
+    },
+    "aggregate_type": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "список"
+        },
+        {
+          "type": "STRING",
+          "value": "словник"
+        }
+      ]
+    },
+    "primitive_type": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "текст"
+        },
+        {
+          "type": "STRING",
+          "value": "логічне"
+        },
+        {
+          "type": "STRING",
+          "value": "число"
+        },
+        {
+          "type": "STRING",
+          "value": "обʼєкт"
+        },
+        {
+          "type": "STRING",
+          "value": "щось"
+        },
+        {
+          "type": "STRING",
+          "value": "ніщо"
+        },
+        {
+          "type": "STRING",
+          "value": "пусто"
+        }
+      ]
+    },
+    "generic_type_params": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "generic_type_param"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "SYMBOL",
+                "name": "generic_type_param"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        }
+      ]
+    },
+    "generic_type_param": {
+      "type": "SYMBOL",
+      "name": "type_identifier"
+    },
+    "type_identifier": {
+      "type": "SYMBOL",
+      "name": "identifier"
     },
     "function_call": {
       "type": "PREC",
@@ -2160,7 +2611,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "_expression"
           },
           {
             "type": "STRING",
@@ -2288,7 +2739,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[\\p{L}_ʼ]+"
+      "value": "[\\p{L}_][\\p{L}_ʼ0-9]*"
     },
     "me": {
       "type": "PREC",
@@ -2299,6 +2750,19 @@
       }
     },
     "string": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "string_line"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string_multiline"
+        }
+      ]
+    },
+    "string_line": {
       "type": "SEQ",
       "members": [
         {
@@ -2306,30 +2770,70 @@
           "value": "\""
         },
         {
-          "type": "REPEAT",
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "string_fragment"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "\\\""
-              },
-              {
-                "type": "PATTERN",
-                "value": "."
-              },
-              {
-                "type": "SYMBOL",
-                "name": "string_interpolation"
-              }
-            ]
+            "type": "STRING",
+            "value": "\""
           }
+        }
+      ]
+    },
+    "string_multiline": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\"\"\""
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "string_fragment"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
-          "value": "\""
+          "value": "\"\"\""
         }
       ]
+    },
+    "string_fragment": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "."
+          },
+          {
+            "type": "STRING",
+            "value": "\\\""
+          },
+          {
+            "type": "SYMBOL",
+            "name": "string_interpolation"
+          }
+        ]
+      }
     },
     "string_interpolation": {
       "type": "SEQ",
@@ -2370,8 +2874,84 @@
       ]
     },
     "number": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "number_int"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number_bin"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number_hex"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number_float"
+        }
+      ]
+    },
+    "number_int": {
+      "type": "SYMBOL",
+      "name": "decimal"
+    },
+    "number_bin": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "0[дb]"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "bin"
+        }
+      ]
+    },
+    "number_hex": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "0[шx]"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "hex"
+        }
+      ]
+    },
+    "number_float": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "decimal"
+        },
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "SYMBOL",
+          "name": "decimal"
+        }
+      ]
+    },
+    "hex": {
       "type": "PATTERN",
-      "value": "\\d+(\\.\\d+)?"
+      "value": "[0-9абвгґдabcdef]+"
+    },
+    "decimal": {
+      "type": "PATTERN",
+      "value": "[0-9]+"
+    },
+    "bin": {
+      "type": "PATTERN",
+      "value": "[0-1]+"
     },
     "empty": {
       "type": "PREC",
@@ -2404,7 +2984,7 @@
         "members": [
           {
             "type": "STRING",
-            "value": ";--"
+            "value": ";*"
           },
           {
             "type": "PATTERN",
@@ -2412,7 +2992,7 @@
           },
           {
             "type": "STRING",
-            "value": "--;"
+            "value": "*;"
           }
         ]
       }

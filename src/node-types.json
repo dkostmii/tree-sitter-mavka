@@ -1,5 +1,10 @@
 [
   {
+    "type": "aggregate_type",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "argument_list",
     "named": true,
     "fields": {},
@@ -250,10 +255,6 @@
           "named": true
         },
         {
-          "type": "long_diia_definition",
-          "named": true
-        },
-        {
           "type": "module_definition",
           "named": true
         },
@@ -278,7 +279,15 @@
           "named": true
         },
         {
+          "type": "try_catch_statement",
+          "named": true
+        },
+        {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "variable_definition",
           "named": true
         },
         {
@@ -312,7 +321,7 @@
     }
   },
   {
-    "type": "cloud_pak_link",
+    "type": "builtin_type",
     "named": true,
     "fields": {},
     "children": {
@@ -320,39 +329,38 @@
       "required": true,
       "types": [
         {
-          "type": "cloud_pak_name",
+          "type": "aggregate_type",
           "named": true
         },
         {
-          "type": "cloud_pak_prefix",
+          "type": "generic_type_args",
           "named": true
         },
         {
-          "type": "cloud_pak_version",
+          "type": "primitive_type",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "cloud_pak_name",
+    "type": "catch_clause",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "block",
+          "named": true
+        },
         {
           "type": "identifier",
           "named": true
         }
       ]
     }
-  },
-  {
-    "type": "cloud_pak_version",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "dictionary",
@@ -402,10 +410,6 @@
           "named": true
         },
         {
-          "type": "identifier",
-          "named": true
-        },
-        {
           "type": "primitive",
           "named": true
         },
@@ -433,7 +437,15 @@
           "named": true
         },
         {
+          "type": "generic_type_params",
+          "named": true
+        },
+        {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "magic_diia_identifier",
           "named": true
         },
         {
@@ -441,11 +453,7 @@
           "named": true
         },
         {
-          "type": "type",
-          "named": true
-        },
-        {
-          "type": "type_expression",
+          "type": "type_annotation",
           "named": true
         }
       ]
@@ -723,6 +731,70 @@
     }
   },
   {
+    "type": "generic_type_arg",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "type",
+          "named": true
+        },
+        {
+          "type": "type_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "generic_type_args",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "generic_type_arg",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "generic_type_param",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "type_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "generic_type_params",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "generic_type_param",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "give_statement",
     "named": true,
     "fields": {},
@@ -808,21 +880,6 @@
     }
   },
   {
-    "type": "long_diia_definition",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "diia_definition",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "me",
     "named": true,
     "fields": {}
@@ -862,11 +919,132 @@
     }
   },
   {
-    "type": "parameter_entry",
+    "type": "named_module_entry",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "as_statement",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "named_module_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "named_module_entry",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "number",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_bin",
+          "named": true
+        },
+        {
+          "type": "number_float",
+          "named": true
+        },
+        {
+          "type": "number_hex",
+          "named": true
+        },
+        {
+          "type": "number_int",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "number_bin",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "bin",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "number_float",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "decimal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "number_hex",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "hex",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "number_int",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "decimal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parameter_default_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -894,10 +1072,6 @@
           "named": true
         },
         {
-          "type": "identifier",
-          "named": true
-        },
-        {
           "type": "primitive",
           "named": true
         },
@@ -906,15 +1080,30 @@
           "named": true
         },
         {
-          "type": "type",
-          "named": true
-        },
-        {
-          "type": "type_expression",
-          "named": true
-        },
-        {
           "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parameter_entry",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "parameter_default_value",
+          "named": true
+        },
+        {
+          "type": "type_annotation",
           "named": true
         }
       ]
@@ -1034,6 +1223,25 @@
     "named": true,
     "fields": {},
     "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string_line",
+          "named": true
+        },
+        {
+          "type": "string_multiline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string_fragment",
+    "named": true,
+    "fields": {},
+    "children": {
       "multiple": true,
       "required": false,
       "types": [
@@ -1092,6 +1300,36 @@
     }
   },
   {
+    "type": "string_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "string_fragment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string_multiline",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "string_fragment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "structure_definition",
     "named": true,
     "fields": {},
@@ -1099,6 +1337,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "generic_type_params",
+          "named": true
+        },
         {
           "type": "identifier",
           "named": true
@@ -1159,11 +1401,7 @@
           "named": true
         },
         {
-          "type": "type",
-          "named": true
-        },
-        {
-          "type": "type_expression",
+          "type": "type_annotation",
           "named": true
         },
         {
@@ -1209,7 +1447,7 @@
           "named": true
         },
         {
-          "type": "cloud_pak_link",
+          "type": "named_module_statement",
           "named": true
         },
         {
@@ -1220,7 +1458,64 @@
     }
   },
   {
+    "type": "try_catch_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "catch_clause",
+          "named": true
+        },
+        {
+          "type": "try_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "try_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "builtin_type",
+          "named": true
+        },
+        {
+          "type": "generic_type_args",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_annotation",
     "named": true,
     "fields": {},
     "children": {
@@ -1228,11 +1523,11 @@
       "required": true,
       "types": [
         {
-          "type": "identifier",
+          "type": "type",
           "named": true
         },
         {
-          "type": "primitive_type",
+          "type": "type_expression",
           "named": true
         }
       ]
@@ -1248,6 +1543,21 @@
       "types": [
         {
           "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -1291,6 +1601,61 @@
         },
         {
           "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "variable_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "type_annotation",
           "named": true
         },
         {
@@ -1369,6 +1734,10 @@
           "named": true
         },
         {
+          "type": "try_catch_statement",
+          "named": true
+        },
+        {
           "type": "unary_expression",
           "named": true
         },
@@ -1440,6 +1809,10 @@
   },
   {
     "type": "\"",
+    "named": false
+  },
+  {
+    "type": "\"\"\"",
     "named": false
   },
   {
@@ -1539,15 +1912,23 @@
     "named": false
   },
   {
+    "type": "bin",
+    "named": true
+  },
+  {
     "type": "block_comment",
     "named": true
   },
   {
-    "type": "cloud_pak_prefix",
+    "type": "decimal",
     "named": true
   },
   {
     "type": "false",
+    "named": true
+  },
+  {
+    "type": "hex",
     "named": true
   },
   {
@@ -1559,7 +1940,7 @@
     "named": true
   },
   {
-    "type": "number",
+    "type": "magic_diia_identifier",
     "named": true
   },
   {
@@ -1572,6 +1953,10 @@
   },
   {
     "type": "або",
+    "named": false
+  },
+  {
+    "type": "біб",
     "named": false
   },
   {
@@ -1596,6 +1981,10 @@
   },
   {
     "type": "дія",
+    "named": false
+  },
+  {
+    "type": "зловити",
     "named": false
   },
   {
@@ -1671,11 +2060,23 @@
     "named": false
   },
   {
+    "type": "спец",
+    "named": false
+  },
+  {
     "type": "список",
     "named": false
   },
   {
+    "type": "спробувати",
+    "named": false
+  },
+  {
     "type": "структура",
+    "named": false
+  },
+  {
+    "type": "субʼєкт",
     "named": false
   },
   {

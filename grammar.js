@@ -70,10 +70,10 @@ module.exports = grammar({
       ),
 
       _definition: $ => choice(
-        $.long_diia_definition,
         $.diia_definition,
         $.structure_definition,
-        $.module_definition
+        $.module_definition,
+        $.variable_definition
       ),
 
       module_definition: $ => prec(10, seq(
@@ -86,6 +86,7 @@ module.exports = grammar({
       structure_definition: $ => seq(
         'структура',
         $.identifier,
+        optional($.generic_type_params),
         optional(seq('є', $.type)),
         repeat($.structure_field),
         'кінець'
@@ -93,30 +94,69 @@ module.exports = grammar({
 
       structure_field: $ => prec.left(2, seq(
         $.identifier,
-        optional(choice($.type, $.type_expression)),
+        optional($.type_annotation),
         optional(seq('=', $._expression))
       )),
 
-      long_diia_definition: $ => seq(
-        'тривала',
-        $.diia_definition
-      ),
-
       diia_definition: $ => seq(
-        'дія',
         optional(
           choice(
-            $.identifier,
-            seq($.identifier, '.', $.identifier)
-          )
+            'тривала',
+            'спец',
+          ),
+        ),
+        'дія',
+        optional(
+          seq(
+            choice(
+              $.identifier,
+              seq($.identifier, '.', choice($.identifier, $.magic_diia_identifier))
+            ),
+            optional($.generic_type_params),
+          ),
         ),
         $.parameter_list,
-        optional(
-          choice($.type, $.type_expression)
-        ),
-        optional($.block),
+        prec.left(1, optional(
+          $.type_annotation
+        )),
+        prec.left(2, optional($.block)),
         'кінець'
       ),
+
+      magic_diia_identifier: $ => token(seq(
+        'чародія_',
+        choice(
+          'додати',
+          'відняти',
+          'помножити',
+          'поділити',
+          'остача',
+          'частка',
+          'степінь',
+          'вабо',
+          'дабо',
+          'ді',
+          'вліво',
+          'вправо',
+          'дні',
+          'більше',
+          'менше',
+          'не_менше',
+          'не_більше',
+          'додатнє',
+          'відʼємне',
+          'містить',
+          'отримати',
+          'покласти',
+          'викликати',
+          'перебір',
+          'число',
+          'текст',
+          'список',
+          'словник',
+          'байти'
+        ),
+      )),
 
       _statement: $ => choice(
         $._expression,
@@ -128,7 +168,8 @@ module.exports = grammar({
         $.while_statement,
         $.for_statement,
         $.fall_statement,
-        $.wait_statement
+        $.wait_statement,
+        $.try_catch_statement,
       ),
 
       wait_statement: $ => seq(
@@ -161,32 +202,50 @@ module.exports = grammar({
         $.symbol
       ),
 
-      take_statement: $ => seq(
+      take_statement: $ => prec.right(1, seq(
         'взяти',
-        optional('пак'),
-        choice(
-          $.cloud_pak_link,
-          $.symbol
+        optional(choice('пак', 'біб')),
+        $.symbol,
+        optional(
+          choice(
+            $.as_statement,
+            $.named_module_statement,
+          )
         ),
-        optional($.as_statement)
+      )),
+
+      named_module_statement: $ => seq(
+        '[',
+        $.named_module_entry,
+        repeat(seq(',', $.named_module_entry)),
+        ']'
       ),
-      
-      cloud_pak_link: $ => seq(
-        '"',
-        $.cloud_pak_prefix,
-        '/',
-        $.cloud_pak_name,
-        '/',
-        $.cloud_pak_version,
-        '"'
+
+      named_module_entry: $ => seq(
+        $.identifier,
+        optional($.as_statement),
       ),
-      cloud_pak_name: $ => prec(1, $.identifier),
-      cloud_pak_version: $ => prec(2, /\d\.\d(\.\d)*/),
-      cloud_pak_prefix: $ => "хмарний.пак.укр",
 
       as_statement: $ => seq(
         'як',
         $.identifier
+      ),
+
+      try_catch_statement: $ => seq(
+        $.try_clause,
+        $.catch_clause
+      ),
+
+      try_clause: $ => seq(
+        'спробувати',
+        optional($.block),
+      ),
+
+      catch_clause: $ => seq(
+        'зловити',
+        $.identifier,
+        optional($.block),
+        'кінець'
       ),
 
       if_statement: $ => seq(
@@ -265,33 +324,78 @@ module.exports = grammar({
 
       parameter_entry: $ => prec(2, seq(
         $.identifier,
-        optional(choice($.type, $.type_expression)),
+        optional($.type_annotation),
         optional(
-          seq('=', $._expression)
+          seq('=', $.parameter_default_value)
         )
       )),
 
+      parameter_default_value: $ => $._expression,
+
+      variable_definition: $ => seq(
+        optional('субʼєкт'),
+        $.identifier,
+        optional($.type_annotation),
+        '=',
+        $._expression,
+      ),
+
+      type_annotation: $ => choice(
+        $.type,
+        $.type_expression,
+      ),
+
       type_expression: $ => seq(
         $.type,
-        repeat1(seq('або', $.type))
+        repeat1(
+          seq(choice('або', 'і'), $.type))
       ),
 
-      type: $ => choice(
+      type: $ => prec.right(0, choice(
+        $.builtin_type,
+        seq($.identifier, optional($.generic_type_args)),
+      )),
+      builtin_type: $ => prec.right(0, choice(
+        seq($.aggregate_type, optional($.generic_type_args)),
         $.primitive_type,
-        $.identifier,
+      )),
+
+      generic_type_args: $ => seq(
+        '<',
+        $.generic_type_arg,
+        repeat(seq(',', $.generic_type_arg)),
+        '>',
       ),
 
-      primitive_type: $ => prec(0, choice(
+      generic_type_arg: $ => choice(
+        $.type,
+        $.type_expression
+      ),
+
+      aggregate_type: $ => choice(
+        'список',
+        'словник',
+      ),
+      primitive_type: $ => choice(
         'текст',
         'логічне',
         'число',
-        'список',
-        'словник',
         'обʼєкт',
         'щось',
         'ніщо',
         'пусто'
-      )),
+      ),
+
+      generic_type_params: $ => seq(
+        '<',
+        $.generic_type_param,
+        repeat(seq(',', $.generic_type_param)),
+        '>'
+      ),
+
+      generic_type_param: $ => $.type_identifier,
+
+      type_identifier: $ => $.identifier,
 
       function_call: $ => prec(3, seq(
         $._expression,
@@ -323,7 +427,7 @@ module.exports = grammar({
       )),
 
       dictionary_entry: $ => prec(3, seq(
-        $.identifier,
+        $._expression,
         '=',
         $._expression
       )),
@@ -352,19 +456,32 @@ module.exports = grammar({
       )),
       
       property: $ => $.identifier,
-      identifier: $ => /[\p{L}_ʼ]+/,
+      identifier: $ => /[\p{L}_][\p{L}_ʼ0-9]*/,
       me: $ => prec(2, "я"),
 
-      string: $ => seq(
+      string: $ => choice(
+        $.string_line,
+        $.string_multiline
+      ),
+
+      string_line: $ => seq(
         '"',
-        repeat(
-          choice(
-            '\\"',
-            /./,
-            $.string_interpolation
-          )
-        ),
-        '"'
+        optional($.string_fragment),
+        token.immediate('"'),
+      ),
+
+      string_multiline: $ => seq(
+        '"""',
+        optional($.string_fragment),
+        '"""',
+      ),
+
+      string_fragment: $ => repeat1(
+        choice(
+          /./,
+          '\\"',
+          $.string_interpolation
+        )
       ),
 
       string_interpolation: $ => seq(
@@ -377,11 +494,33 @@ module.exports = grammar({
       false: $ => 'ні',
       boolean: $ => choice($.true, $.false),
 
-      number: $ => /\d+(\.\d+)?/,
-      
+      number: $ => choice(
+        $.number_int,
+        $.number_bin,
+        $.number_hex,
+        $.number_float
+      ),
+      number_int: $ => $.decimal,
+      number_bin: $ => seq(
+        /0[дb]/,
+        $.bin
+      ),
+      number_hex: $ => seq(
+        /0[шx]/,
+        $.hex
+      ),
+      number_float: $ => seq(
+        $.decimal,
+        '.',
+        $.decimal
+      ),
+      hex: $ => /[0-9абвгґдabcdef]+/,
+      decimal: $ => /[0-9]+/,
+      bin: $ => /[0-1]+/,
+
       empty: $ => prec(1, 'пусто'),
 
       line_comment: $ => token(seq(';;', /.*/)),
-      block_comment: $ => token(seq(';--', /.*/, '--;')),
+      block_comment: $ => token(seq(';*', /.*/, '*;')),
     }
 })
