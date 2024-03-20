@@ -90,11 +90,47 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_subsripting",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "dictionary",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_expression",
+          "named": true
+        },
+        {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
           "named": true
         }
       ]
@@ -284,10 +320,6 @@
         },
         {
           "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "variable_definition",
           "named": true
         },
         {
@@ -665,6 +697,10 @@
           "named": true
         },
         {
+          "type": "generic_type_args",
+          "named": true
+        },
+        {
           "type": "primitive",
           "named": true
         },
@@ -923,7 +959,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -1238,21 +1274,6 @@
     }
   },
   {
-    "type": "string_fragment",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "string_interpolation",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "string_interpolation",
     "named": true,
     "fields": {},
@@ -1304,11 +1325,19 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
+          "type": "escape_sequence",
+          "named": true
+        },
+        {
           "type": "string_fragment",
+          "named": true
+        },
+        {
+          "type": "string_interpolation",
           "named": true
         }
       ]
@@ -1319,11 +1348,19 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
+          "type": "escape_sequence",
+          "named": true
+        },
+        {
           "type": "string_fragment",
+          "named": true
+        },
+        {
+          "type": "string_interpolation",
           "named": true
         }
       ]
@@ -1429,6 +1466,10 @@
         },
         {
           "type": "property",
+          "named": true
+        },
+        {
+          "type": "type_annotation",
           "named": true
         }
       ]
@@ -1611,61 +1652,6 @@
     }
   },
   {
-    "type": "variable_definition",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "array_subsripting",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "dictionary",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "function_expression",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "primitive",
-          "named": true
-        },
-        {
-          "type": "symbol",
-          "named": true
-        },
-        {
-          "type": "type_annotation",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "wait_statement",
     "named": true,
     "fields": {},
@@ -1694,14 +1680,6 @@
           "named": true
         },
         {
-          "type": "fall_statement",
-          "named": true
-        },
-        {
-          "type": "for_statement",
-          "named": true
-        },
-        {
           "type": "function_call",
           "named": true
         },
@@ -1710,19 +1688,7 @@
           "named": true
         },
         {
-          "type": "give_statement",
-          "named": true
-        },
-        {
-          "type": "if_statement",
-          "named": true
-        },
-        {
           "type": "primitive",
-          "named": true
-        },
-        {
-          "type": "return_statement",
           "named": true
         },
         {
@@ -1730,23 +1696,7 @@
           "named": true
         },
         {
-          "type": "take_statement",
-          "named": true
-        },
-        {
-          "type": "try_catch_statement",
-          "named": true
-        },
-        {
           "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "wait_statement",
-          "named": true
-        },
-        {
-          "type": "while_statement",
           "named": true
         }
       ]
@@ -1900,10 +1850,6 @@
     "named": false
   },
   {
-    "type": "\\\"",
-    "named": false
-  },
-  {
     "type": "]",
     "named": false
   },
@@ -1924,6 +1870,10 @@
     "named": true
   },
   {
+    "type": "escape_sequence",
+    "named": true
+  },
+  {
     "type": "false",
     "named": true
   },
@@ -1941,6 +1891,10 @@
   },
   {
     "type": "magic_diia_identifier",
+    "named": true
+  },
+  {
+    "type": "string_fragment",
     "named": true
   },
   {

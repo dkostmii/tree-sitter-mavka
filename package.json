@@ -3,25 +3,51 @@
   "version": "0.0.1",
   "description": "Tree-sitter for Mavka",
   "main": "bindings/node",
+  "types": "bindings/node",
   "scripts": {
     "generate": "tree-sitter generate",
-    "test": "tree-sitter test"
+    "test": "tree-sitter test",
+    "install": "node-gyp-build",
+    "prebuildify": "prebuildify --napi --strip"
   },
   "keywords": [
     "mavka",
     "language",
     "tree-sitter"
   ],
+  "files": [
+    "grammar.js",
+    "binding.gyp",
+    "prebuilds/**",
+    "bindings/node/*",
+    "queries/*",
+    "src/**"
+  ],
   "author": "Dmytro-Andrii Kostelnyi",
   "license": "ISC",
   "dependencies": {
-    "nan": "^2.17.0"
+    "node-addon-api": "^7.1.0",
+    "node-gyp-build": "^4.8.0"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.21.0"
+  },
+  "peerDependenciesMeta": {
+    "tree_sitter": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.20.8"
+    "tree-sitter-cli": "^0.22.2",
+    "prebuildify": "^6.0.0"
   },
-  "tree-sitter": [{
-    "scope": "source.мавка",
-    "file-types": ["м", "мавка"]
-  }]
+  "tree-sitter": [
+    {
+      "scope": "source.мавка",
+      "file-types": [
+        "м",
+        "мавка"
+      ]
+    }
+  ]
 }
