@@ -291,6 +291,10 @@
           "named": true
         },
         {
+          "type": "inline_language_block",
+          "named": true
+        },
+        {
           "type": "module_definition",
           "named": true
         },
@@ -910,6 +914,25 @@
         },
         {
           "type": "if_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inline_language_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "language_name",
+          "named": true
+        },
+        {
+          "type": "string_multiline",
           "named": true
         }
       ]
@@ -1883,6 +1906,10 @@
   },
   {
     "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "language_name",
     "named": true
   },
   {

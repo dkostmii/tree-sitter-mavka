@@ -1184,6 +1184,10 @@
         {
           "type": "SYMBOL",
           "name": "try_catch_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "inline_language_block"
         }
       ]
     },
@@ -2820,6 +2824,24 @@
         {
           "type": "SYMBOL",
           "name": "string_line"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string_multiline"
+        }
+      ]
+    },
+    "inline_language_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          },
+          "named": true,
+          "value": "language_name"
         },
         {
           "type": "SYMBOL",
