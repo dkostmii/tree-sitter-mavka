@@ -48,7 +48,8 @@
         "м",
         "мавка"
       ],
-      "highlights": "queries/highlights.scm"
+      "highlights": "queries/highlights.scm",
+      "injections": "queries/injections.scm"
     }
   ]
 }

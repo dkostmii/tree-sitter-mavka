@@ -920,6 +920,25 @@
     }
   },
   {
+    "type": "inline_content",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        },
+        {
+          "type": "inline_content_fragment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "inline_language_block",
     "named": true,
     "fields": {},
@@ -928,15 +947,20 @@
       "required": true,
       "types": [
         {
-          "type": "language_name",
+          "type": "inline_content",
           "named": true
         },
         {
-          "type": "string_multiline",
+          "type": "language_name",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "language_name",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "me",
@@ -1909,8 +1933,12 @@
     "named": true
   },
   {
-    "type": "language_name",
+    "type": "inline_content_fragment",
     "named": true
+  },
+  {
+    "type": "js",
+    "named": false
   },
   {
     "type": "line_comment",
