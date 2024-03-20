@@ -2,37 +2,42 @@
 (block_comment) @comment
 
 (type) @type
-(primitive_type) @type.builtin
+(builtin_type) @type.builtin
 [
-    "структура"
-    "я"
-    "модуль"
-    "дати"
-    "взяти"
-    "пак"
-    "якщо"
-    "інакше"
-    "і"
     "або"
+    "біб"
     "більше"
-    "не більше"
-    "менше"
-    "не менше"
-    "не рівно"
-    "рівно"
-    "є"
-    "не є"
-    "містить"
-    "не містить"
-    "тривала"
-    "дія"
     "вернути"
-    "кінець"
-    "поки"
-    "перебрати"
-    "як"
+    "взяти"
     "впасти"
+    "дати"
+    "дія"
+    "зловити"
+    "кінець"
+    "менше"
+    "модуль"
+    "містить"
+    "не більше"
+    "не менше"
+    "не містить"
+    "не рівно"
+    "не є"
+    "пак"
+    "перебрати"
+    "поки"
+    "рівно"
+    "спец"
+    "спробувати"
+    "структура"
+    "субʼєкт"
+    "тривала"
     "чекати"
+    "я"
+    "як"
+    "якщо"
+    "є"
+    "і"
+    "інакше"
 ] @keyword
 
 
@@ -40,21 +45,18 @@
 (structure_field (identifier) @property)
 
 (parameter_entry (identifier) @property)
-(dictionary_entry (identifier) @property)
+(dictionary_entry (symbol) @property)
 
 (diia_definition (identifier) @type.builtin (identifier) @function)
 (diia_definition (identifier) @function)
 
-(function_call (symbol (identifier) @constant (property (identifier) @function)))
+(function_call (symbol (identifier) @variable (property) @function))
 (function_call (symbol (identifier) @function))
 
 (symbol (identifier) @constant (property) @property)
 
-(primitive) @number
 (string) @string
-(cloud_pak_name) @constant.builtin
-(cloud_pak_version) @function
-(cloud_pak_link "/" @string) @string
+(number) @number
 
 (binary_expression "-" @operator)
 (assign_statement "-" @operator "=")
@@ -80,6 +82,8 @@
     ">"
 ] @operator
 
+(escape_sequence) @escape
+
 (string_interpolation ")" @string.special) @string.special
 [
     "("
@@ -89,7 +93,6 @@
 [
     "["
     "]"
-    "\\\""
 ] @property
 
 [
@@ -97,5 +100,11 @@
     "=="
 ] @type
 
-(property (identifier) @property) @property
-(identifier) @constant
+[
+    (true)
+    (false)
+    (empty)
+] @constant.builtin
+
+(property) @property
+(identifier) @variable

@@ -47,7 +47,8 @@
       "file-types": [
         "м",
         "мавка"
-      ]
+      ],
+      "highlights": "queries/highlights.scm"
     }
   ]
 }
