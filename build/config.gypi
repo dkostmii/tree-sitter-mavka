@@ -410,10 +410,7 @@
     "v8_use_siphash": 1,
     "want_separate_host_toolset": 0,
     "nodedir": "/home/dkostmii/.cache/node-gyp/21.7.0",
-    "standalone_static_library": 1,
-    "frozen_lockfile": "",
-    "user_agent": "pnpm/8.15.4 npm/? node/v21.7.0 linux x64",
-    "node_gyp": "/home/dkostmii/.cache/node/corepack/v1/pnpm/8.15.4/dist/node_modules/node-gyp/bin/node-gyp.js",
-    "registry": "https://registry.npmjs.org/"
+    "python": "/usr/bin/python3",
+    "standalone_static_library": 1
   }
 }
