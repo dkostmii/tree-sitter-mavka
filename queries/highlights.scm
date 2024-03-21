@@ -1,72 +1,132 @@
-(line_comment) @comment
-(block_comment) @comment
+(identifier) @variable
 
-(type) @type
-(builtin_type) @type.builtin
+(line_comment) @comment
+(comment) @comment
+
+(type_value) @type
+(type_value_item_builtin) @type.builtin
 [
-    "або"
-    "біб"
-    "більше"
-    "вернути"
-    "взяти"
-    "впасти"
-    "дати"
     "дія"
-    "зловити"
-    "кінець"
+] @keyword.function
+
+[
+    "взяти"
+] @keyword.import
+
+[
+    "не"
+    "більше"
     "менше"
-    "модуль"
     "містить"
-    "не більше"
-    "не менше"
-    "не містить"
-    "не рівно"
-    "не є"
-    "пак"
-    "перебрати"
-    "поки"
     "рівно"
-    "спец"
-    "спробувати"
-    "структура"
-    "субʼєкт"
-    "тривала"
-    "чекати"
-    "я"
-    "як"
-    "якщо"
     "є"
     "і"
+    "або"
+] @keyword.operator
+
+[
+    "структура"
+    "макет"
+] @keyword.type
+
+[
+    "вернути"
+] @keyword.return
+
+[
+    "тривала"
+    "чекати"
+] @keyword.coroutine
+
+[
+    "спец"
+] @keyword.modifier
+
+[
+    "перебрати"
+    "поки"
+] @keyword.repeat
+
+[
+    "спробувати"
+    "зловити"
+    "впасти"
+] @keyword.exception
+
+[
+    "якщо"
     "інакше"
+] @keyword.conditional
+
+(ternary
+    "?" @keyword.conditional.ternary
+    ":" @keyword.conditional.ternary)
+
+[
+    "кінець"
+    "модуль"
+    "субʼєкт"
+    "як"
+    "дати"
+    "пак"
+    "біб"
 ] @keyword
 
 
-(structure_definition (identifier) @type)
-(structure_field (identifier) @property)
+(structure
+    s_name: (identifier) @type)
+(structure
+    s_name: (identifier) @type
+    s_parent: (super_identifiers_chain) @type)
+(structure_element
+    sp_name: (identifier) @property)
 
-(parameter_entry (identifier) @property)
-(dictionary_entry (symbol) @property)
+(mockup_structure
+    ms_name: (identifier) @type)
+(mockup_structure
+    ms_name: (identifier) @type
+    ms_parent: (super_identifiers_chain) @type)
+(mockup_structure_body_element
+    sp_name: (identifier) @property)
 
-(diia_definition (identifier) @type.builtin (identifier) @function)
-(diia_definition (identifier) @function)
+(param
+    p_name: (identifier) @property)
+(dictionary_arg
+    da_name_id: (identifier) @property)
+(dictionary_arg
+    da_name_string: (string_line) @property)
 
-(function_call (symbol (identifier) @variable (property) @function))
-(function_call (symbol (identifier) @function))
+(mockup_diia
+    md_structure: (identifier) @type
+    md_name: (identifier) @function.method)
+(mockup_diia
+    md_name: (identifier) @function)
+(diia
+    d_structure: (identifier) @type
+    d_name: (identifier) @function.method)
+(diia
+    d_name: (identifier) @function)
 
-(symbol (identifier) @constant (property) @property)
+(generics
+    (identifier) @type.definition)
 
+(call
+    c_value: (atom
+               (chain
+                 c_right: (identifier) @function.method.call)))
+(call
+    c_value: (atom
+               (identifier) @function.call))
+
+(eval) @string.special
 (string) @string
 (number) @number
-
-(binary_expression "-" @operator)
-(assign_statement "-" @operator "=")
+(boolean) @boolean
+(empty) @constant.builtin
 
 [
     "!"
     "-"
-] @property
-
-[
     "+"
     "*"
     "**"
@@ -80,25 +140,17 @@
     ">>"
     "<"
     ">"
-] @operator
-
-(escape_sequence) @escape
-
-(string_interpolation ")" @string.special) @string.special
-[
-    "("
-    ")"
-] @function
-
-[
-    "["
-    "]"
-] @property
-
-[
     "="
     "=="
-] @type
+] @operator
+
+(dictionary_arg
+    da_name_string: (string_line) @string.special.symbol)
+
+(escaped_quote) @string.escape
+
+(string_interpolation_start) @punctuation.special
+(string_interpolation_end) @punctuation.special
 
 [
     (true)
@@ -106,5 +158,19 @@
     (empty)
 ] @constant.builtin
 
-(property) @property
-(identifier) @variable
+[
+    (me)
+    (parent)
+] @variable.builtin
+
+[
+    "("
+    ")"
+    "["
+    "]"
+] @punctuation.bracket
+
+[
+    "."
+    ","
+] @punctuation.delimiter
